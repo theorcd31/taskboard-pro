@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { delay } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
   private tasks = [
-    { id: 1, title: "Prépaprer un cours Angular"},
-    { id: 2, title: "Relire le module RxJS"},
-    { id: 3, title: "Corriger les TPs"},
+    { id: 1, title: 'Préparer un cours Angular' },
+    { id: 2, title: 'Relire le module RxJS' },
+    { id: 3, title: 'Corriger les TPs' },
   ];
 
-  getTasks() {
-    return of(this.tasks).pipe(delay(1000));
+  private lastId = 3;
+  private taskSubject = new BehaviorSubject(this.tasks);
+  tasks$ = this.taskSubject.asObservable();
+
+  addTask(title: string) {
+    const newTask = { id: ++this.lastId, title };
+    this.tasks = [...this.tasks, newTask];
+    this.taskSubject.next(this.tasks);
   }
 
 }
