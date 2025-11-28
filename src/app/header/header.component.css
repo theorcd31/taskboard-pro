@@ -1,0 +1,10 @@
+.link:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+.onPage {
+    color: red;
+}
+  
