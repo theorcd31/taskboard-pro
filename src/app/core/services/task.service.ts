@@ -16,8 +16,14 @@ export class TaskService {
   tasks$ = this.taskSubject.asObservable();
 
   addTask(title: string) {
-    const newTask = { id: ++this.lastId, title };
+    if(!title) return ;
+    const newTask = { id: ++this.lastId, title: title };
     this.tasks = [...this.tasks, newTask];
+    this.taskSubject.next(this.tasks);
+  }
+
+  deleteTask(id: number) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
     this.taskSubject.next(this.tasks);
   }
 
