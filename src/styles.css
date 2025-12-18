@@ -141,3 +141,30 @@ app-root {
 .page-container {
   flex: 1;
 }
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.input-text {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  font-size: 0.95rem;
+  color: #111827;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-text::placeholder {
+  color: #9ca3af;
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}

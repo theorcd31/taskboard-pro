@@ -8,7 +8,7 @@
         Mettre en avant
       </button>
       <button type="button" (click)="deleteTask(t.id)" class="btn-danger"> Supprimer </button>
-      <button type="button" (click)="taskCompleted(t)" class="primary"> Terminé </button>
+      <button type="button" (click)="taskCompleted(t)" class="btn-primary"> Terminé </button>
     }
   </ul>
 } @else {
@@ -28,11 +28,19 @@
 
 <h3>Actions</h3>
 
-<input type="text" #taskInput placeholder="Titre de la tâche" (keyup.enter)="addTask(taskInput)" />
+<div class="task-actions">
+  <input
+    type="text"
+    #taskInput
+    placeholder="Titre de la tâche"
+    class="input-text"
+    (keyup.enter)="addTask(taskInput)"
+  />
 
-<button (click)="addTask(taskInput)" class="btn-primary">
-  Ajouter une tâche
-</button>
+  <button (click)="addTask(taskInput)" class="btn-primary">
+    Ajouter une tâche
+  </button>
+</div>
 
 <!-- Zone d'injection du composant dynamique -->
 <div #highlightContainer></div>
