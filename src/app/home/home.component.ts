@@ -1,6 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { TaskService } from '../core/services/task.service';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({

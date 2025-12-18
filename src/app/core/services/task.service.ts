@@ -5,11 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TaskService {
-  private tasks = [
-    { id: 1, title: 'Préparer un cours Angular', completed : false },
-    { id: 2, title: 'Relire le module RxJS', completed : false },
-    { id: 3, title: 'Corriger les TPs', completed : false },
-  ];
+  private tasks: TaskItem[] = [];
 
   private lastId = 3;
   private taskSubject = new BehaviorSubject(this.tasks);
@@ -17,7 +13,11 @@ export class TaskService {
 
   addTask(title: string) {
     if(!title) return ;
-    const newTask = { id: ++this.lastId, title: title, completed: false };
+    const newTask: TaskItem = {
+      id: this.lastId++,
+      title,
+      completed: false
+    };
     this.tasks = [...this.tasks, newTask];
     this.taskSubject.next(this.tasks);
   }
@@ -34,4 +34,18 @@ export class TaskService {
     this.taskSubject.next(this.tasks);
   }
 
+  getTasks(): TaskItem[] {
+    return this.taskSubject.value;
+    }
+    
+  clearTasks(): void {
+    this.taskSubject.next([]);
+    this.lastId = 1;
+  }
+}
+
+export interface TaskItem {
+  id: number;
+  title: string;
+  completed: boolean;
 }

@@ -16,9 +16,10 @@ export class TasksPageComponent {
 
   taskService = inject(TaskService);
   tasks$ = this.taskService.tasks$;
-  addTask(input: HTMLInputElement) {
-    this.taskService.addTask(input.value);
-    input.value = '';
+  addTask(title: string): void {
+    if (title.trim()) {
+      this.taskService.addTask(title);
+    }
   }
 
   deleteTask(id: number) {

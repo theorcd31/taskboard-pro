@@ -34,10 +34,10 @@
     #taskInput
     placeholder="Titre de la tâche"
     class="input-text"
-    (keyup.enter)="addTask(taskInput)"
+    (keyup.enter)="addTask(taskInput.value); taskInput.value = ''"
   />
 
-  <button (click)="addTask(taskInput)" class="btn-primary">
+  <button (click)="addTask(taskInput.value); taskInput.value = ''" class="btn-primary">
     Ajouter une tâche
   </button>
 </div>
