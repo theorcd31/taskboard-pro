@@ -25,6 +25,11 @@ export class TasksPageComponent {
     this.taskService.deleteTask(id);
   }
 
+  taskCompleted(task: Task) {
+    this.taskService.taskCompleted(task.id,);
+  }
+  
+
   @ViewChild('highlightContainer', { read: ViewContainerRef })
   container!: ViewContainerRef;
 

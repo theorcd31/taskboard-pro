@@ -13,4 +13,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TaskHighlight {
   @Input() title = 'Test';
+  @Input() completed = false;
 }
