@@ -1,28 +1,38 @@
 <h2>Liste de tâches</h2>
 
 @if (tasks$ | async; as tasks) {
+
+  <!-- Liste complète -->
   <ul class="task-list">
-    @for(t of tasks; track t.id) {
+    @for (t of tasks; track t.id) {
       <li>{{ t.title }}</li>
+
       <button type="button" (click)="highlight(t)" class="btn-primary">
         Mettre en avant
       </button>
-      <button type="button" (click)="deleteTask(t.id)" class="btn-danger"> Supprimer </button>
-      <button type="button" (click)="taskCompleted(t)" class="btn-primary"> Terminé </button>
+
+      <button type="button" (click)="deleteTask(t.id)" class="btn-danger">
+        Supprimer
+      </button>
+
+      <button type="button" (click)="taskCompleted(t)" class="btn-primary">
+        Terminé
+      </button>
     }
   </ul>
+
+  <h3>Tâches terminées</h3>
+  <ul class="task-list">
+    @for (t of tasks; track t.id) {
+      @if (t.completed) {
+        <li [class.completed]="t.completed">{{ t.title }}</li>
+      }
+    }
+  </ul>
+
 } @else {
   <p>Chargement des tâches...</p>
 }
-
-<h3> Tâches terminées</h3>
-<ul class="task-list">
-  @for (t of tasks$ | async; track t.id) {
-    @if (t.completed != false ) {
-      <li [class.completed]="t.completed">{{ t.title }}</li>
-    }
-  }
-</ul>
 
 <hr />
 
